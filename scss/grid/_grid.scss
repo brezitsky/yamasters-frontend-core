@@ -1,0 +1,298 @@
+//
+// @variables
+//
+$include-html-grid-classes: $include-html-classes !default;
+$include-xl-html-grid-classes: false !default;
+
+//$row-width: rem-calc(1000) !default;
+//$column-gutter: rem-calc(30) !default;
+//$total-columns: 12 !default;
+
+//
+// Grid Functions
+//
+
+// @FUNCTION
+// $colNumber - Found in settings file
+// $totalColumns - Found in settings file
+@function grid-calc($colNumber, $totalColumns) {
+	@return percentage(($colNumber / $totalColumns));
+}
+
+//
+// @mixins
+//
+
+// For creating container, nested, and collapsed rows.
+//
+//
+// $behavior - Any special behavior for this row? Default: false. Options: nest, collapse, nest-collapse, false.
+@mixin grid-row($behavior: false) {
+	@include flexbox;
+	@include flex-direction(row);
+	@include flex-wrap(wrap);
+	@include justify-content(flex-start);
+	@include align-items(stretch);
+	@include flex(0 0 auto);
+
+	// use @include grid-row(nest); to include a nested row
+	@if $behavior == nest {
+		// margin-#{$default-float}: -($column-gutter / 2);
+		// margin-#{$opposite-direction}: -($column-gutter / 2);
+		// margin-top: 0;
+		// margin-bottom: 0;
+		margin: 0 ($column-gutter / -2);
+		max-width: none;
+		width: auto;
+	}
+
+		// use @include grid-row(collapse); to collapsed a container row margins
+	@else if $behavior == collapse {
+		margin: 0;
+		max-width: $row-width;
+		width: 100%;
+	}	// use @include grid-row(nest-collapse); to collapse outer margins on a nested row
+
+	@else if $behavior == nest-collapse {
+		width: auto;
+		margin: 0;
+		max-width: none;
+	}
+
+		// use @include grid-row; to use a container row
+	@else {
+		width: 100%;
+		// margin-#{$default-float}: auto;
+		// margin-#{$opposite-direction}: auto;
+		// margin-top: 0;
+		// margin-bottom: 0;
+		margin: 0 auto;
+		max-width: $row-width;
+	}
+}
+
+// Creates a column, should be used inside of a media query to control layouts
+
+@mixin grid-column(
+	$columns: false,
+	$last-column: false,
+	$center: false,
+	$offset: false,
+	$push: false,
+	$pull: false,
+	$collapse: false,
+	$float: false,
+	$position: false) {
+
+	// If positioned for default .column, include relative position
+	@if $position {
+		position: relative;
+	}
+
+	// If collapsed, get rid of gutter padding
+	@if $collapse {
+		padding-left: 0;
+		padding-right: 0;
+	}
+
+		// Gutter padding whenever a column isn't set to collapse
+		// (use $collapse:null to do nothing)
+	@else if $collapse == false {
+		padding-left: $column-gutter / 2;
+		padding-right: $column-gutter / 2;
+	}
+
+	// If a column number is given, calculate width
+	@if $columns {
+		width: grid-calc($columns, $total-columns);
+	}
+
+	// If offset, calculate appropriate margins
+	@if $offset { margin-#{$default-float}: grid-calc($offset, $total-columns) !important; }
+
+}
+
+// Create presentational classes for grid
+//
+// $size - Name of class to use, i.e. "large" will generate .large-1, .large-2, etc.
+
+
+@mixin grid-html-classes($size) {
+
+	.row {
+		// Main-axis position of elements (justify-content)
+		&.#{$size}start { @include justify-content(flex-start); }
+		&.#{$size}end { @include justify-content(flex-end); }
+		&.#{$size}center-h { @include justify-content(center); }
+
+		// Cross-axis position of element (align-items)
+		&.#{$size}top { @include align-items(flex-start); }
+		&.#{$size}bottom { @include align-items(flex-end); }
+		&.#{$size}center-v { @include align-items(center); }
+		&.#{$size}stretch { @include align-items(stretch); }
+		&.#{$size}baseline { @include align-items(baseline); }
+
+		&.#{$size}reverse { @include flex-wrap(wrap-reverse); }
+
+		&.#{$size}nowrap { @include flex-wrap(nowrap); }
+
+		.row {
+			&.#{$size}start { @include justify-content(flex-start); }
+			&.#{$size}end { @include justify-content(flex-end); }
+			&.#{$size}center-h { @include justify-content(center); }
+			&.#{$size}top { @include align-items(flex-start); }
+			&.#{$size}bottom { @include align-items(flex-end); }
+			&.#{$size}center-v { @include align-items(center); }
+			&.#{$size}stretch { @include align-items(stretch); }
+			&.#{$size}baseline { @include align-items(baseline); }
+			&.#{$size}reverse { @include flex-wrap(wrap-reverse); }
+			&.#{$size}nowrap { @include flex-wrap(nowrap); }
+		}
+	}
+
+
+	// ������ � ���������
+	.cols {
+		@include grid-column($columns: false, $position: false);
+
+		@for $i from 1 through $total-columns {
+			&.#{$size}#{$i} {
+				@include grid-column($columns: $i, $collapse: null, $float: false);
+			}
+		}
+
+		// flex order
+		@for $i from 1 through $total-columns {
+			&.#{$size}order-#{$i} {
+				@include order($i);
+			}
+		}
+
+		// flex align-self
+		$align-self: flex-start, flex-end, center, baseline, stretch;
+			&.#{$size}align-start {@include align-self(flex-start);}
+			&.#{$size}align-end {@include align-self(flex-end);}
+			&.#{$size}align-center {@include align-self(center);}
+			&.#{$size}align-baseline {@include align-self(baseline);}
+			&.#{$size}align-stretch {@include align-self(stretch);}
+
+
+		@for $i from 0 through $total-columns - 1 {
+			&.#{$size}offset-#{$i} { @include grid-column($offset: $i, $collapse: null, $float: false); }
+		}
+	}
+}
+
+//////////////////////////////////////////////////
+
+@include exports('grid') {
+	@if $include-html-grid-classes {
+		.row {
+			@include grid-row;
+
+			// Main-axis position of elements (justify-content)
+			&.start { @include justify-content(flex-start); }
+			&.end { @include justify-content(flex-end); }
+			&.center-h { @include justify-content(center); }
+
+			// Cross-axis position of element (align-items)
+			&.top { @include align-items(flex-start); }
+			&.bottom { @include align-items(flex-end); }
+			&.center-v { @include align-items(center); }
+			&.stretch { @include align-items(stretch); }
+			&.baseline { @include align-items(baseline); }
+
+
+			&.reverse { @include flex-wrap(wrap-reverse); }
+
+			&.nowrap { @include flex-wrap(nowrap); }
+
+			&.collapse {
+				> .cols { @include grid-column($collapse: true); }
+
+				.row {
+					margin-left: 0;
+					margin-right: 0;
+				}
+			}
+
+			// row in row
+			.row {
+				@include grid-row($behavior: nest);
+
+				// Main-axis position of elements (justify-content)
+				&.start { @include justify-content(flex-start); }
+				&.end { @include justify-content(flex-end); }
+				&.center-h { @include justify-content(center); }
+				// Cross-axis position of element (align-items)
+				&.top { @include align-items(flex-start); }
+				&.bottom { @include align-items(flex-end); }
+				&.center-v { @include align-items(center); }
+				&.stretch { @include align-items(stretch); }
+				&.baseline { @include align-items(baseline); }
+				&.reverse { @include flex-wrap(wrap-reverse); }
+				&.nowrap { @include flex-wrap(nowrap); }
+
+				&.collapse { @include grid-row($behavior: nest-collapse); }
+			}
+
+		}
+
+		.cols {
+			@include grid-column($columns: $total-columns);
+
+			// ������� ������������ �� ��������� ������
+			&.align-start {@include align-self(flex-start);}
+
+			// ������� ������������ �� ��������� �����
+			&.align-end {@include align-self(flex-end);}
+
+			// ������� ������������ �� ��������� ����������
+			&.align-center {@include align-self(center);}
+
+			// ������� ������������ �� ��������� �� ������� �����
+			&.align-baseline {@include align-self(baseline);}
+
+			// ������� ������������ �� ��������� ������ ���� (������ 100%)
+			&.align-stretch {@include align-self(stretch);}
+
+			// �������� ������� � ���������� ������
+			@for $i from 1 through $total-columns {
+				&.order-#{$i} {
+					@include order($i);
+				}
+			}
+
+			> .row {
+				height: 100%;
+			}
+		}
+
+		@media #{$s_-up} {
+			@include grid-html-classes($size: s_);
+		}
+		@media #{$s__-up} {
+			@include grid-html-classes($size: s__);
+		}
+		@media #{$s___-up} {
+			@include grid-html-classes($size: s___);
+		}
+
+		@media #{$m_-up} {
+			@include grid-html-classes($size: m_);
+		}
+		@media #{$m__-up} {
+			@include grid-html-classes($size: m__);
+		}
+
+		@media #{$l_-up} {
+			@include grid-html-classes($size: l_);
+		}
+		@media #{$l__-up} {
+			@include grid-html-classes($size: l__);
+		}
+		@media #{$l___-up} {
+			@include grid-html-classes($size: l___);
+		}
+	}
+}

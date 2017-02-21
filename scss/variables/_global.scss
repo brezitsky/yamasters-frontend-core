@@ -1,0 +1,76 @@
+// We use these to control text direction settings
+$text-direction: ltr !default;
+$default-float: left !default;
+$opposite-direction: right !default;
+@if $text-direction == ltr {
+	$default-float: left;
+	$opposite-direction: right;
+} @else {
+	$default-float: right;
+	$opposite-direction: left;
+}
+
+// We use this to control whether or not CSS classes come through in the gem files.
+$include-html-classes: true !default;
+$include-html-global-classes: $include-html-classes !default;
+
+/*
+$body-font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif !default;
+
+$row-width: rem-calc(1240);
+$column-gutter: rem-calc(30);
+$total-columns: 15;
+*/
+
+// Media Query Ranges
+// Small ranges
+$s_-range: (0px, 319px) !default;
+$s__-range: (320px, 479px) !default;
+$s___-range: (480px, 639px) !default;
+
+// Medium ranges
+$m_-range: (640px, 799px) !default;
+$m__-range: (800px, 1023px) !default;
+
+// Large ranges
+$l_-range: (1024px, 1179px) !default;
+$l__-range: (1180px, 1599px) !default;
+$l___-range: (1600px, 99999999px) !default;
+
+
+$screen: "only screen" !default;
+
+$landscape: "#{$screen} and (orientation: landscape)" !default;
+$portrait: "#{$screen} and (orientation: portrait)" !default;
+
+// small
+
+$s_-up: "#{$screen} and (min-width:#{lower-bound($s_-range)})" !default;
+$s_-only: "#{$screen} and (min-width:#{lower-bound($s_-range)}) and (max-width:#{upper-bound($s_-range)})" !default;
+
+$s__-up: "#{$screen} and (min-width:#{lower-bound($s__-range)})" !default;
+$s__-only: "#{$screen} and (min-width:#{lower-bound($s__-range)}) and (max-width:#{upper-bound($s__-range)})" !default;
+
+$s___-up: "#{$screen} and (min-width:#{lower-bound($s___-range)})" !default;
+$s___-only: "#{$screen} and (min-width:#{lower-bound($s___-range)}) and (max-width:#{upper-bound($s___-range)})" !default;
+
+
+// medium
+
+$m_-up: "#{$screen} and (min-width:#{lower-bound($m_-range)})" !default;
+$m_-only: "#{$screen} and (min-width:#{lower-bound($m_-range)}) and (max-width:#{upper-bound($m_-range)})" !default;
+
+$m__-up: "#{$screen} and (min-width:#{lower-bound($m__-range)})" !default;
+$m__-only: "#{$screen} and (min-width:#{lower-bound($m__-range)}) and (max-width:#{upper-bound($m__-range)})" !default;
+
+
+// large
+
+$l_-up: "#{$screen} and (min-width:#{lower-bound($l_-range)})" !default;
+$l_-only: "#{$screen} and (min-width:#{lower-bound($l_-range)}) and (max-width:#{upper-bound($l_-range)})" !default;
+
+$l__-up: "#{$screen} and (min-width:#{lower-bound($l__-range)})" !default;
+$l__-only: "#{$screen} and (min-width:#{lower-bound($l__-range)}) and (max-width:#{upper-bound($l__-range)})" !default;
+
+$l___-up: "#{$screen} and (min-width:#{lower-bound($l___-range)})" !default;
+$l___-only: "#{$screen} and (min-width:#{lower-bound($l___-range)}) and (max-width:#{upper-bound($l___-range)})" !default;

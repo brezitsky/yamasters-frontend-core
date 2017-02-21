@@ -1,0 +1,431 @@
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//-------------------------------- MIXIN`S ---------------------------------------------------------------------------///////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//============================== Ranges =====================================================================================
+// small
+
+
+@mixin s_up {
+	@media #{$s_-up} {
+		@content;
+	}
+}
+@mixin s_only {
+	@media #{$s__-only} {
+		@content;
+	}
+}
+
+@mixin s__up {
+	@media #{$s__-up} {
+		@content;
+	}
+}
+@mixin s__only {
+	@media #{$s__-only} {
+		@content;
+	}
+}
+
+@mixin s___up {
+	@media #{$s___-up} {
+		@content;
+	}
+}
+@mixin s___only {
+	@media #{$s___-only} {
+		@content;
+	}
+}
+
+// medium
+
+
+@mixin m_up {
+	@media #{$m_-up} {
+		@content;
+	}
+}
+@mixin m_only {
+	@media #{$m_-only} {
+		@content;
+	}
+}
+
+@mixin m__up {
+	@media #{$m__-up} {
+		@content;
+	}
+}
+@mixin m__only {
+	@media #{$m__-only} {
+		@content;
+	}
+}
+
+// large
+
+@mixin l_up {
+	@media #{$l_-up} {
+		@content;
+	}
+}
+@mixin l_only {
+	@media #{$l_-only} {
+		@content;
+	}
+}
+
+@mixin l__up {
+	@media #{$l__-up} {
+		@content;
+	}
+}
+@mixin l__only {
+	@media #{$l__-only} {
+		@content;
+	}
+}
+
+@mixin l___up {
+	@media #{$l___-up} {
+		@content;
+	}
+}
+@mixin l___only {
+	@media #{$l___-only} {
+		@content;
+	}
+}
+
+//============================== Placeholder ================================================================================
+@mixin placeholder {
+	&::-webkit-input-placeholder {@content}
+	&:-moz-placeholder           {@content}
+	&::-moz-placeholder          {@content}
+	&:-ms-input-placeholder      {@content}
+}
+
+//============================== Transitions ================================================================================
+@mixin single-transition($property:all, $speed:300ms, $ease:ease) {
+	-webkit-transition: $property $speed $ease;
+	-moz-transition: $property $speed $ease;
+	-ms-transition: $property $speed $ease;
+	-o-transition: $property $speed $ease;
+	transition: $property $speed $ease;
+}
+@mixin transition($property:all, $speed:300ms, $ease:ease, $delay:300ms) {
+	-webkit-transition: $property $speed $ease $delay;
+	-moz-transition: $property $speed $ease $delay;
+	-ms-transition: $property $speed $ease $delay;
+	-o-transition: $property $speed $ease $delay;
+	transition: $property $speed $ease $delay;
+}
+
+//============================== We use this to add box-sizing across browser prefixes ======================================
+@mixin box-sizing($type:border-box) {
+	-webkit-box-sizing: $type;
+	-moz-box-sizing: $type;
+	-ms-box-sizing: $type;
+	-o-box-sizing: $type;
+	box-sizing: $type;
+}
+
+//============================== We use this to do clear floats =============================================================
+@mixin clearfix {
+	*zoom:1;
+	&:before, &:after { content: ""; display: block; }
+	&:after { clear: both; }
+}
+
+//============================== Transforms =================================================================================
+@mixin transform($a...) {
+	-webkit-transform: $a;
+	-moz-transform: $a;
+	-ms-transform: $a;
+	-o-transform: $a;
+	transform: $a;
+}
+
+// translateY
+@mixin translateY($a) {
+	-webkit-transform: translateY($a);
+	-moz-transform: translateY($a);
+	-ms-transform: translateY($a);
+	-o-transform: translateY($a);
+	transform: translateY($a);
+}
+
+// translateX
+@mixin translateX($a) {
+	-webkit-transform: translateX($a);
+	-moz-transform: translateX($a);
+	-ms-transform: translateX($a);
+	-o-transform: translateX($a);
+	transform: translateX($a);
+}
+
+// rotate
+@mixin rotate($a) {
+	-webkit-transform: rotate($a);
+	-moz-transform: rotate($a);
+	-ms-transform: rotate($a);
+	-o-transform: rotate($a);
+	transform: rotate($a);
+}
+
+// scale
+@mixin scale($a) {
+	-webkit-transform: scale($a);
+	-moz-transform: scale($a);
+	-ms-transform: scale($a);
+	-o-transform: scale($a);
+	transform: scale($a);
+}
+
+//============================== User-select ================================================================================
+@mixin user-select($a) {
+	-webkit-user-select: $a;
+	-moz-user-select: $a;
+	-ms-user-select: $a;
+	-o-user-select: $a;
+	user-select: $a;
+}
+
+//============================== Pointer events =============================================================================
+@mixin pointer-events($a) {
+	-webkit-pointer-events: $a;
+	-moz-pointer-events: $a;
+	-ms-pointer-events: $a;
+	-o-pointer-events: $a;
+	pointer-events: $a;
+}
+
+//============================== Border-radius ==============================================================================
+@mixin border-radius($a) {
+	-webkit-border-radius: $a;
+	-moz-border-radius: $a;
+	-ms-border-radius: $a;
+	-o-border-radius: $a;
+	border-radius: $a;
+}
+
+//============================== Box-shadow =================================================================================
+@mixin box-shadow($a...) {
+	-webkit-box-shadow: $a;
+	-moz-box-shadow: $a;
+	-ms-box-shadow: $a;
+	-o-box-shadow: $a;
+	box-shadow: $a;
+}
+
+//============================== Text-shadow =================================================================================
+@mixin text-shadow($a...) {
+	-webkit-text-shadow: $a;
+	-moz-text-shadow: $a;
+	-ms-text-shadow: $a;
+	-o-text-shadow: $a;
+	text-shadow: $a;
+}
+
+//============================== Background =================================================================================
+@mixin background($a) {
+	-webkit-background: $a;
+	-moz-background: $a;
+	-ms-background: $a;
+	-o-background: $a;
+	background: $a;
+}
+
+//============================== Gradient ===================================================================================
+@mixin linear-gradient($a...) {
+	background: -webkit-linear-gradient($a);
+	background: -moz-linear-gradient($a);
+	background: -ms-linear-gradient($a);
+	background: -o-linear-gradient($a);
+	background: linear-gradient($a);
+}
+
+//============================== For non responsive site ====================================================================
+@mixin static-site($p) {
+	.row {
+		width: 1240px !important;
+		padding: $p;
+		.row {
+			width: 100% !important;
+			padding: 0;
+		}
+	}
+
+	@media #{$small-up} {
+		body, html {
+			width: 1240px;
+		}
+	}
+	@media #{$medium-up} {
+		body, html {
+			width: auto;
+			min-width: 1240px;
+		}
+	}
+}
+
+//============================== Vertical align middle ======================================================================
+@mixin vam() {
+	position: absolute;
+	top: 0; right: 0; bottom: 0; left: 0;
+	margin: auto;
+	width: auto;
+	max-width: 100%;
+	max-height: 100%;
+}
+
+//============================== Slider =====================================================================================
+@mixin slider() {
+	position: relative;
+	background: url("#{$pathCDN}/images/ajax.svg") no-repeat center center;
+	overflow: hidden;
+	> * {opacity: 0;}
+
+	&.show {
+		background: none;
+		overflow: visible;
+
+		> * {
+			opacity: 1;
+			@include single-transition(opacity, 700ms, ease);
+		}
+	}
+}
+
+//============================ CSS columns =========================================================
+@mixin column-count($a) {
+	-webkit-column-count: $a;
+	-moz-column-count: $a;
+	-ms-column-count: $a;
+	-o-column-count: $a;
+	column-count: $a;
+}
+
+@mixin column-gap($a) {
+	-webkit-column-gap: $a;
+	-moz-column-gap: $a;
+	-ms-column-gap: $a;
+	-o-column-gap: $a;
+	column-gap: $a;
+}
+
+@mixin column-rule($a) {
+	-webkit-column-rule: $a;
+	-moz-column-rule: $a;
+	-ms-column-rule: $a;
+	-o-column-rule: $a;
+	column-rule: $a;
+}
+
+@mixin column-span($a) {
+	-webkit-column-span: $a;
+	-moz-column-span: $a;
+	-ms-column-span: $a;
+	-o-column-span: $a;
+	column-span: $a;
+}
+
+@mixin column-width($a) {
+	-webkit-column-width: $a;
+	-moz-column-width: $a;
+	-ms-column-width: $a;
+	-o-column-width: $a;
+	column-width: $a;
+}
+
+//============================ Keyframes ===========================================================
+@mixin keyframes($name) {
+	@-webkit-keyframes #{$name} {
+		@content;
+	}
+	@-moz-keyframes #{$name} {
+		@content;
+	}
+	@-ms-keyframes #{$name} {
+		@content;
+	}
+	@-o-keyframes #{$name} {
+		@content;
+	}
+	@keyframes #{$name} {
+		@content;
+	}
+}
+
+@mixin animation($a) {
+	-webkit-animation: $a;
+	-moz-animation: $a;
+	-ms-animation: $a;
+	-o-animation: $a;
+	animation: $a;
+}
+
+// ========================== rem ==============================================
+
+@function rem($a) {
+	// $a: #{$a}px;
+	// $b: calcFluidFontSize(13px, 16px, 240px, 1180px, 16px);
+	// @return calc(#{$a} / (#{$b}));
+	@return #{$a / 16}rem;
+}
+
+// ========================== appearance ======================================
+
+@mixin appearance($a) {
+	-webkit-appearance: $a;
+	-moz-appearance: $a;
+	-ms-appearance: $a;
+	-o-appearance: $a;
+	appearance: $a;
+}
+
+// ========================= airman button ====================================
+
+@mixin effect($color1: #2d4f64, $color2: #0d7bcf){
+	z-index: 1;
+	position: relative;
+	overflow: hidden;
+
+	&:before{
+		content: '';
+		position: absolute;
+		height: 100%;
+		width: 100%;
+		bottom: 100%;
+		left: 0;
+		z-index: -1;
+		background-color: $color1;
+		@include single-transition(transform, 300ms, cubic-bezier(0.75, 0, 0.125, 1));
+	}
+	&:after{
+		content: '';
+		position: absolute;
+		height: 100%;
+		width: 100%;
+		bottom: 100%;
+		left: 0;
+		z-index: -1;
+		background-color: $color2;
+		@include single-transition(transform, 300ms, cubic-bezier(0.75, 0, 0.125, 1));
+	}
+
+	&:hover{
+		@include single-transition(all, 2s, ease);
+
+		&:before{
+			@include transform(translate3d(0, 100%, 0));
+			@include single-transition(transform, 300ms, cubic-bezier(0.75, 0, 0.125, 1));
+		}
+		&:after{
+			@include transition(transform, 300ms, cubic-bezier(0.75, 0, 0.125, 1), 0.175s);
+			@include transform(translate3d(0, 100%, 0));
+		}
+	}
+}

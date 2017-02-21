@@ -1,0 +1,26 @@
+[
+	{
+		"header": "Some notification 1",
+		"body": "Lorem ipsumwefwef dolor sit amet",
+		"timeToShow": 2000,
+		"type": "info"
+	},
+	{
+		"header": "Some notification 2",
+		"body": "Lorem ipsurthj5ju4trm dolor sit amet",
+		"timeToShow": 3000,
+		"type": "info"
+	},
+	{
+		"header": "Some notification 3",
+		"body": "Lorem ipsum doqflor sit amet",
+		"timeToShow": 5000,
+		"type": "info"
+	},
+	{
+		"header": "Some notification 4",
+		"body": "Lorem ipsuwefwefwefm dolor sit amet",
+		"timeToShow": 4000,
+		"type": "info"
+	}
+]

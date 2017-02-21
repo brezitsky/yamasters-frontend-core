@@ -1,0 +1,71 @@
+@import "SCSS/wanted";
+
+$height: 300px;
+
+.yam-slider {
+	height: $height;
+	overflow: hidden;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: relative;
+	padding: 0 35px;
+
+	.item {
+		height: $height;
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: cover;
+		@include flexbox;
+		@include align-items(center);
+		@include justify-content(center);
+		text-align: center;
+		font-size: rem(30);
+		color: green;
+	}
+
+	.owl-nav {
+
+		.owl-prev, .owl-next {
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			width: 35px;
+			background-color: red;
+		}
+
+		.owl-prev {
+			left: 0;
+		}
+
+		.owl-next {
+			right: 0;
+		}
+	}
+
+	.owl-dots {
+		font-size: 0;
+		text-align: center;
+		position: absolute;
+		bottom: 10px;
+		left: 0;
+		right: 0;
+
+		.owl-dot {
+			display: inline-block;
+			width: 15px;
+			height: 15px;
+			background-color: rgba(red, .3);
+			margin: 0 5px;
+			@include single-transition;
+
+			&:hover {
+				background-color: rgba(red, .6);
+			}
+
+			&.active {
+				background-color: rgba(red, 1);
+			}
+		}
+	}
+}

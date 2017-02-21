@@ -1,0 +1,88 @@
+extends includes/tpl-index
+
+include includes/components/selectbox/
+include includes/components/slider/
+
+block MiddleWrapper
+	#middle-wrapper
+
+		.row
+			.cols.s_24
+				.index-page
+					a.fancybox(href='img/batman.png') click me
+
+		.row
+			.cols.s_24.m_8.l_6
+				+SelectBox('sb1', 'плейсхолдер 1', JSON.stringify([
+					{text: 'text 1', value: 'value 1', selected: true},
+					{text: 'text 2', value: 'value 2'},
+					{text: 'text 3', value: 'value 3'},
+					{text: 'text 4', value: 'value 4'},
+					{text: 'text 5', value: 'value 5'},
+					{text: 'text 6', value: 'value 6'},
+					{text: 'text 7', value: 'value 7'},
+					{text: 'text 8', value: 'value 8'},
+					{text: 'text 9', value: 'value 9'},
+					{text: 'text 10', value: 'value 10'}
+				]))
+
+			.cols.s_24.m_8.l_6
+				+SelectBox('sb2', 'плейсхолдер 2', JSON.stringify([
+					{text: 'text 1', value: 'value 1'},
+					{text: 'text 2', value: 'value 2'},
+					{text: 'text 3', value: 'value 3'},
+					{text: 'text 4', value: 'value 4'},
+					{text: 'text 5', value: 'value 5'},
+					{text: 'text 6', value: 'value 6', selected: true},
+					{text: 'text 7', value: 'value 7'},
+					{text: 'text 8', value: 'value 8'},
+					{text: 'text 9', value: 'value 9'},
+					{text: 'text 10', value: 'value 10'}
+				]))
+
+			.cols.s_24.m_8.l_6
+				+SelectBox('sb3', 'плейсхолдер 3', JSON.stringify([
+					{text: 'text 1', value: 'value 1'},
+					{text: 'text 2', value: 'value 2'},
+					{text: 'text 3', value: 'value 3'},
+					{text: 'text 4', value: 'value 4'},
+					{text: 'text 5', value: 'value 5'},
+					{text: 'text 6', value: 'value 6', selected: true},
+					{text: 'text 7', value: 'value 7'},
+					{text: 'text 8', value: 'value 8'},
+					{text: 'text 9', value: 'value 9'},
+					{text: 'text 10', value: 'value 10'}
+				]))
+
+		//- .row
+		//- 	.cols.s_24
+		//- 		+Slider(
+		//- 			JSON.stringify([
+		//- 				{
+		//- 					image: 'img/slide-1.jpg',
+		//- 					text: 'Lorem ipsum dolor sit amet'
+		//- 				},
+		//- 				{
+		//- 					image: 'img/slide-2.jpg',
+		//- 					text: 'Lorem ipsum dolor sit amet'
+		//- 				},
+		//- 				{
+		//- 					image: 'img/slide-3.jpg',
+		//- 					text: 'Lorem ipsum dolor sit amet'
+		//- 				},
+		//- 				{
+		//- 					image: 'img/slide-4.jpg',
+		//- 					text: 'Lorem ipsum dolor sit amet'
+		//- 				},
+		//- 				{
+		//- 					image: 'img/slide-5.jpg',
+		//- 					text: 'Lorem ipsum dolor sit amet'
+		//- 				}
+		//- 			]),
+		//- 			JSON.stringify({
+		//- 				items: 2,
+		//- 				margin: 10,
+		//- 				loop: true,
+		//- 				nav: true
+		//- 			})
+		//- 		)

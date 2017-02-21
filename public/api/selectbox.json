@@ -1,0 +1,46 @@
+{
+	"placeholder": "плейсхолдер new",
+	"items": [
+		{
+			"text": "textBuffererxt 1",
+			"value": "value 1"
+		},
+		{
+			"text": "textBuffererxt 2",
+			"value": "value 2",
+			"selected": true
+		},
+		{
+			"text": "tehxt 3",
+			"value": "value 3"
+		},
+		{
+			"text": "tehhxt 4",
+			"value": "value 4"
+		},
+		{
+			"text": "terwext 5",
+			"value": "value 5"
+		},
+		{
+			"text": "tehtrtext 6",
+			"value": "value 6"
+		},
+		{
+			"text": "text 7",
+			"value": "value 7"
+		},
+		{
+			"text": "teqrxt 8",
+			"value": "value 8"
+		},
+		{
+			"text": "tewegxt 9",
+			"value": "value 9"
+		},
+		{
+			"text": "tewergxt 10",
+			"value": "value 10"
+		}
+	]
+}

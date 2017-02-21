@@ -1,0 +1,84 @@
+$array: 
+	"s_" "s__" "s___"
+	"m_" "m__"
+	"l_" "l__" "l___";
+	
+@mixin visibility($a, $b) {
+	$flag: false;
+	
+	// show
+	@each $t in $b {
+		@if $t == $a {
+			$flag: true;
+			.show-#{$t}up, .show-#{$t}only {
+				display: inherit !important;
+			}
+		}
+		@else {
+			// старший 
+			@if $flag == true {
+				.hide-#{$t}up, .hide-#{$t}only {
+					display: inherit !important;
+				}
+			}
+			
+			// менший
+			@else {
+				.hide-#{$t}only {display: inherit !important;}
+				.show-#{$t}up {display: inherit !important;}
+			}
+		}
+	}
+	
+	// hide 
+	$flag: false;
+	@each $t in $b {
+		@if $t == $a {
+			$flag: true;
+			.hide-#{$t}up, .hide-#{$t}only {
+				display: none !important;
+			}
+		}
+		@else {
+			// старший
+			@if $flag == true {
+				.show-#{$t}up, .show-#{$t}only { 
+					display: none !important;
+				}
+			}
+			
+			// менший
+			@else {
+				.show-#{$t}only {display: none !important;}
+			}
+		}
+	}
+}
+
+@each $r in $array {
+	
+	@if $r == s_ {
+		@include s_up { @include visibility($r, $array); }
+	}
+	@else if $r == s__ {
+		@include s__up { @include visibility($r, $array); }
+	}
+	@else if $r == s___ {
+		@include s___up { @include visibility($r, $array); }
+	}
+	@else if $r == m_ {
+		@include m_up { @include visibility($r, $array); }
+	}
+	@else if $r == m__ {
+		@include m__up { @include visibility($r, $array); }
+	}
+	@else if $r == l_ {
+		@include l_up { @include visibility($r, $array); }
+	}
+	@else if $r == l__ {
+		@include l__up { @include visibility($r, $array); }
+	}
+	@else if $r == l___ {
+		@include l___up { @include visibility($r, $array); }
+	}
+}

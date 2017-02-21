@@ -1,0 +1,24 @@
+doctype html
+html
+	head
+		title #{PROJECT_NAME} | #{PAGE_NAME}
+
+		link(rel='stylesheet' href='fonts/font-awesome-4.7.0/css/font-awesome.css')
+		script.
+			window.FirstGlobalState = {
+				selectboxes: {}
+			}
+body
+	#body(data-language="ru" data-template="index-page")
+
+		#top-wrapper
+			include blocks/header/
+
+		block MiddleWrapper
+
+		#bottom-wrapper bottom-wrapper
+
+		include components/notifier/
+
+	script(src='/js/jquery_ui_mobile_mousewheel_rellax.js')
+	script(src='/js/inputmask_fancybox_range_superfish_owl.js')

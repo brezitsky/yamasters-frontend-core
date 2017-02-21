@@ -1,0 +1,102 @@
+//
+// Block Grid Variables
+//
+$include-html-grid-classes: $include-html-classes !default;
+
+// We use this to control the maximum number of block grid elements per row
+//$block-grid-elements: 12 !default;
+//$block-grid-default-spacing: rem-calc(20) !default;
+
+// Enables media queries for block-grid classes. Set to false if writing semantic HTML.
+$block-grid-media-queries: true !default;
+
+//
+// Block Grid Mixins
+//
+
+// Create a custom block grid
+//
+
+[class^="grid"] { 
+	@include flexbox;
+	@include flex-direction(row);
+	@include flex-wrap(wrap);
+	@include justify-content(flex-start);
+	@include align-items(stretch);
+
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	@include clearfix;
+	
+	& > li {
+		height: auto;
+		padding: 0;
+	}
+}
+
+
+
+// $per-row - # of items to display per row. Default: false.
+// $spacing - # of ems to use as padding on each block item. Default: rem-calc(20).
+// $base-style - Apply a base style to block grid. Default: true.
+@mixin block-grid ($per-row: false, $spacing: $block-grid-default-spacing) {
+	
+	& > li {
+		width: calc(#{100% / $per-row} - #{$spacing - $spacing / $per-row});
+		
+		&:nth-of-type(n) {
+			margin: 0 $spacing $spacing 0;
+		}
+		
+		&:nth-of-type(#{$per-row}n) {
+			margin: 0 0 $spacing;
+		}
+	}
+}
+
+// Generate presentational markup for block grid.
+//
+// $size - Name of class to use, i.e. "large" will generate .large-block-grid-1, .large-block-grid-2, etc.
+@mixin block-grid-html-classes($size) {
+	[class^="grid"] {
+		@for $i from 1 through $block-grid-elements {
+			&.#{$size}#{$i} {
+				@include block-grid($i, $block-grid-default-spacing);
+			}
+		}
+	}
+}
+
+@include exports("block-grid") {
+	@if $include-html-grid-classes {
+
+		@media #{$s_-up} {
+			@include block-grid-html-classes($size:s_);
+		}
+		@media #{$s__-up} {
+			@include block-grid-html-classes($size:s__);
+		}
+		@media #{$s___-up} {
+			@include block-grid-html-classes($size:s___);
+		}
+
+
+		@media #{$m_-up} {
+			@include block-grid-html-classes($size:m_);
+		}
+		@media #{$m__-up} {
+			@include block-grid-html-classes($size:m__);
+		}
+
+		@media #{$l_-up} {
+			@include block-grid-html-classes($size:l_);
+		}
+		@media #{$l__-up} {
+			@include block-grid-html-classes($size:l__);
+		}
+		@media #{$l___-up} {
+			@include block-grid-html-classes($size:l___);
+		}
+	}
+}

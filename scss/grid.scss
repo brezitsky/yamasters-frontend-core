@@ -1,0 +1,14 @@
+// Make sure the charset is set appropriately
+@charset "UTF-8";
+
+// Behold, here are all the Foundation components.
+
+@import "mixins/flex";
+@import "mixins/custom";
+@import "mixins/functions";
+@import "variables/settings";
+@import "variables/global";
+@import "grid/normalize";
+@import "grid/grid";
+@import "grid/block-grid";
+@import "mixins/visibility";

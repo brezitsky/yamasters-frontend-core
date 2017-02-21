@@ -1,0 +1,78 @@
+@import "SCSS/wanted";
+
+// yamasters select styles
+
+[data-yam-selectbox] {
+	position: relative;
+
+	.choosed {
+		position: relative;
+
+		&:after {
+			@include fa($fa-chevron-down);
+			position: absolute;
+			display: block;
+			width: $inputHeight;
+			height: $inputHeight;
+			top: 0;
+			right: 0;
+			text-align: center;
+			@include pointer-events(none);
+			line-height: $inputHeight;
+			@include single-transition;
+		}
+
+		&.visible {
+			&:after {
+				@include rotate(90deg);
+			}
+		}
+
+		input {
+			height: $inputHeight;
+			padding: 0 calc(#{$inputHeight} + 10px) 0 10px;
+			outline: none;
+		}
+	}
+
+	ul {
+		position: absolute;
+		top: calc(100% + 5px);
+		left: 0;
+		right: 0;
+		background-color: #fff;
+		box-shadow: 0 0 5px #aaa;
+		z-index: 1;
+		max-height: 150px;
+		overflow: auto;
+		opacity: 0;
+		@include pointer-events(none);
+		@include translateY(10px);
+		@include single-transition;
+
+		&.visible {
+			opacity: 1;
+			@include pointer-events(auto);
+			@include translateY(0px);
+		}
+
+		li {
+			padding: 7px 10px;
+			@include single-transition;
+			cursor: pointer;
+			font-size: rem(14);
+
+			&:hover {
+				background-color: #eee;
+			}
+
+			&.selected {
+				background-color: #e7e7e7;
+			}
+
+			&.hidden {
+				display: none;
+			}
+		}
+	}
+}
