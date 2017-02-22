@@ -17,3 +17,8 @@ export const selectbox = {
 	VALUE: 'SET_SELECTBOX_VALUE',
 	FIRST_RENDERING: 'SET_SELECTBOX_FIRST_RENDERING'
 }
+
+export const liqpay = {
+	DATA: 'SET_LIQPAY_DATA',
+	SIGNATURE: 'SET_LIQPAY_SIGNATURE'
+}

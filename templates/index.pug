@@ -2,6 +2,7 @@ extends includes/tpl-index
 
 include includes/components/selectbox/
 include includes/components/slider/
+include includes/components/liqpay/
 
 block MiddleWrapper
 	#middle-wrapper
@@ -10,6 +11,44 @@ block MiddleWrapper
 			.cols.s_24
 				.index-page
 					a.fancybox(href='img/batman.png') click me
+
+		.row
+			.cols.s_24
+				+Liqpay('liqpay1', JSON.stringify({
+					version: 3,
+					public_key: 'i47779826879',
+					action: 'pay',
+					amount: 1.25,
+					currency: 'UAH',
+					description: 'Тестовий платіж за якусь штуку',
+					order_id: 'unique_item_id',
+					result_url: 'http://localhost:505/',
+
+					sandbox: 1,
+					sender_first_name: 'Name',
+					sender_last_name: 'Lastname',
+					product_url: 'some url',
+					product_name: 'product name',
+					product_descrition: 'product description'
+				}))
+			.cols.s_24
+				+Liqpay('liqpay2', JSON.stringify({
+					version: 3,
+					public_key: 'i47779826879',
+					action: 'pay',
+					amount: 1.45,
+					currency: 'UAH',
+					description: 'Тестовий платіж за якусь штуку 2',
+					order_id: 'unique_item_id',
+					result_url: 'http://localhost:505/',
+
+					sandbox: 1,
+					sender_first_name: 'Name',
+					sender_last_name: 'Lastname',
+					product_url: 'some url',
+					product_name: 'product name',
+					product_descrition: 'product description'
+				}))
 
 		.row
 			.cols.s_24.m_8.l_6
@@ -54,35 +93,35 @@ block MiddleWrapper
 					{text: 'text 10', value: 'value 10'}
 				]))
 
-		//- .row
-		//- 	.cols.s_24
-		//- 		+Slider(
-		//- 			JSON.stringify([
-		//- 				{
-		//- 					image: 'img/slide-1.jpg',
-		//- 					text: 'Lorem ipsum dolor sit amet'
-		//- 				},
-		//- 				{
-		//- 					image: 'img/slide-2.jpg',
-		//- 					text: 'Lorem ipsum dolor sit amet'
-		//- 				},
-		//- 				{
-		//- 					image: 'img/slide-3.jpg',
-		//- 					text: 'Lorem ipsum dolor sit amet'
-		//- 				},
-		//- 				{
-		//- 					image: 'img/slide-4.jpg',
-		//- 					text: 'Lorem ipsum dolor sit amet'
-		//- 				},
-		//- 				{
-		//- 					image: 'img/slide-5.jpg',
-		//- 					text: 'Lorem ipsum dolor sit amet'
-		//- 				}
-		//- 			]),
-		//- 			JSON.stringify({
-		//- 				items: 2,
-		//- 				margin: 10,
-		//- 				loop: true,
-		//- 				nav: true
-		//- 			})
-		//- 		)
+		.row
+			.cols.s_24
+				+Slider(
+					JSON.stringify([
+						{
+							image: 'img/slide-1.jpg',
+							text: 'Lorem ipsum dolor sit amet'
+						},
+						{
+							image: 'img/slide-2.jpg',
+							text: 'Lorem ipsum dolor sit amet'
+						},
+						{
+							image: 'img/slide-3.jpg',
+							text: 'Lorem ipsum dolor sit amet'
+						},
+						{
+							image: 'img/slide-4.jpg',
+							text: 'Lorem ipsum dolor sit amet'
+						},
+						{
+							image: 'img/slide-5.jpg',
+							text: 'Lorem ipsum dolor sit amet'
+						}
+					]),
+					JSON.stringify({
+						items: 3,
+						margin: 10,
+						loop: true,
+						nav: true
+					})
+				)

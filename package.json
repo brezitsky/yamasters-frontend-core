@@ -36,6 +36,7 @@
     "@types/owlcarousel": "^1.3.0",
     "fancybox": "^3.0.0",
     "jquery": "^3.1.1",
+    "js-base64": "^2.1.9",
     "vue": "^2.1.10",
     "vue-class-component": "^4.4.0",
     "vue-click-outside": "^0.4.3",

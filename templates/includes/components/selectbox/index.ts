@@ -31,7 +31,7 @@ import {selectbox} from 'VUEX/mutation-types';
 	computed: {
 		keyword: {
 			get(): string {
-				return this.$store.getters.globalState[this['namespace']].text
+				return this.$store.getters.globalSelectboxesState[this['namespace']].text
 			},
 			set(string) {
 				this.$store.commit({
@@ -43,7 +43,7 @@ import {selectbox} from 'VUEX/mutation-types';
 		},
 		value: {
 			get(): string {
-				return this.$store.getters.globalState[this['namespace']].value
+				return this.$store.getters.globalSelectboxesState[this['namespace']].value
 			},
 			set(val) {
 				this.$store.commit({
@@ -55,7 +55,7 @@ import {selectbox} from 'VUEX/mutation-types';
 		},
 		firstRendering: {
 			get(): boolean {
-				return this.$store.getters.globalState[this['namespace']].firstRendering
+				return this.$store.getters.globalSelectboxesState[this['namespace']].firstRendering
 			},
 			set(flag: boolean) {
 				this.$store.commit({
@@ -74,10 +74,6 @@ import {selectbox} from 'VUEX/mutation-types';
 				return state['selectboxes'][this['namespace']] ?
 				state['selectboxes'][this['namespace']].isVisible : false;
 			},
-			// value(state) {
-			// 	return state['selectboxes'][this['namespace']] ?
-			// 		state['selectboxes'][this['namespace']].value : '';
-			// },
 			filtered(state) {
 				let it = state['selectboxes'][this['namespace']];
 				let text = it.text;
@@ -85,7 +81,7 @@ import {selectbox} from 'VUEX/mutation-types';
 
 				return it.items.filter(item => {
 					if(item.selected && this['firstRendering']) {
-						console.log(this);
+						// console.log(this);
 						// console.log(this);
 						this['value'] = item.value;
 						this['keyword'] = item.text;
@@ -113,7 +109,8 @@ import {selectbox} from 'VUEX/mutation-types';
 		this['firstRendering'] = false;
 
 		document.addEventListener('click', e => {
-			if(!$(e.target).closest(this.$refs['container']).length) {
+			if(!$(e.target).closest(this.$refs['container']).length && this['isVisible']) {
+
 				this.$store.commit({
 					type: selectbox.CLOSE,
 					namespace: this['namespace']

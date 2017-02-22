@@ -1,5 +1,5 @@
 export const getters = {
-	globalSelectboxesState(state) {
+	globalLiqpayState(state) {
 		return state;
 	}
 }
