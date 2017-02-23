@@ -3,6 +3,7 @@ extends includes/tpl-index
 include includes/components/selectbox/
 include includes/components/slider/
 include includes/components/liqpay/
+include includes/components/counter/
 
 block MiddleWrapper
 	#middle-wrapper
@@ -11,6 +12,13 @@ block MiddleWrapper
 			.cols.s_24
 				.index-page
 					a.fancybox(href='img/batman.png') click me
+
+		.row
+			.cols.s_24.m_8.l_6
+				+Counter('count1', 3, 0, 10, .03241, 5, ',')
+
+			.cols.s_24.m_8.l_6
+				+Counter('count2', 5, 1, 20, 2.21, 2, ',')
 
 		.row
 			.cols.s_24

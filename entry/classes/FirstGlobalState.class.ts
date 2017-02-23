@@ -1,10 +1,8 @@
 import {Selectboxes} from 'INTERFACES/selectbox'
 import {Liqpayes} from 'INTERFACES/liqpay'
+import {Counters} from 'INTERFACES/counter'
 
 export default class FirstGlobalState {
-	constructor() {
-
-	}
 
 	getGlobalState() {
 		window['FirstGlobalState'] = {};
@@ -31,7 +29,7 @@ export default class FirstGlobalState {
 					obj[prop] = components[i].getAttribute(prop);
 				})
 
-				window['FirstGlobalState'][nodeName][i] = obj;
+				window['FirstGlobalState'][nodeName].push(obj)
 			}
 
 			// console.log('FIRST GLOBAL STATE: ', window['FirstGlobalState']);
@@ -85,6 +83,32 @@ export default class FirstGlobalState {
 		}
 		else {
 			return false;
+		}
+	}
+
+	getCounters(): any {
+		let state = window['FirstGlobalState']['yam-counter']
+		// console.log(state);
+
+		if(state) {
+			let normalizedState: Counters = {}
+
+			state.map(item => {
+				normalizedState[item.namespace] = {
+					min: parseFloat(item.min),
+					max: parseFloat(item.max),
+					step: parseFloat(item.step),
+					afterDot: parseInt(item.afterDot),
+					value: parseFloat(item.value),
+					userInput: item.value,
+					separator: item.separator
+				}
+			})
+
+			return normalizedState
+		}
+		else {
+			return false
 		}
 	}
 }

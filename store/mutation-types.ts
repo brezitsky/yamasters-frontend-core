@@ -22,3 +22,10 @@ export const liqpay = {
 	DATA: 'SET_LIQPAY_DATA',
 	SIGNATURE: 'SET_LIQPAY_SIGNATURE'
 }
+
+
+export const counter = {
+	INCR: 'INCREMENT_COUNTER',
+	DECR: 'DECREMENT_COUNTER',
+	VALUE: 'SET_COUNTER_VALUE'
+}

@@ -14,6 +14,7 @@ import Selectbox from 'PUG/components/selectbox'
 import Slider from 'PUG/components/slider'
 import Notifier from 'PUG/components/notifier'
 import Liqpay from 'PUG/components/liqpay'
+import Counter from 'PUG/components/counter'
 
 //-----------------------------------------  LOGIC
 import * as Vue from 'vue'
@@ -42,6 +43,9 @@ for (var component in window['FirstGlobalState']) {
 				break;
 			case 'yam-liqpay':
 				componentsList[component] = Liqpay
+				break;
+			case 'yam-counter':
+				componentsList[component] = Counter
 				break;
 			default:
 			console.log(`Unknown component: "${component}"`);
